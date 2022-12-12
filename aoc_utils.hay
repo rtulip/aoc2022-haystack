@@ -10,3 +10,31 @@ fn split_lines(&String: s) -> [Vec<String>] {
     } drop drop 
     lines
 }
+
+fn Str.strip_non_numeric(Str: s) -> [Str] {
+    0 while as [i] { i
+        i s::size 1 - <
+        i &s Str.at char.is_numeric lnot land
+    } { 1 + }
+    s Str.split swap drop
+
+}
+
+fn Str.parse_next_num(Str: mut s) -> [u64 Str] {
+    s Str.strip_non_numeric *s !
+    0 while as [i] { i
+        i s::size 1 - <
+        i &s Str.at char.is_numeric land
+    } { 1 + }
+
+    s Str.split as [left right]
+
+    left::size 0 == if {
+        right Str.parse_u64
+        left
+    } else {
+        left Str.parse_u64
+        right
+    }
+    
+}

@@ -1,0 +1,151 @@
+include "aoc2022/aoc_utils.hay"
+
+struct Move {
+    pub u64: n
+    pub u64: src
+    pub u64: dst
+impl:
+    fn Move.take(Move: m *Vec<Vec<char>>: board) {
+        0 while dup m::n < {
+            m::src 1 - board Vec.get_mut Opt.unwrap
+            Vec.pop Opt.unwrap
+            m::dst 1 - board Vec.get_mut Opt.unwrap
+            Vec.push
+            1 + 
+        } drop
+    } 
+
+    fn Move.take2(Move: m *Vec<Vec<char>>: board) {
+        Vec.new::<char> as [mut tmp]
+        m::src 1 - board Vec.get_mut Opt.unwrap as [src]
+        m::dst 1 - board Vec.get_mut Opt.unwrap as [dst]
+        0 while dup m::n < {
+            src Vec.pop Opt.unwrap *tmp Vec.push 
+            1 + 
+        } drop
+
+        while &tmp Vec.is_empty lnot {
+            *tmp Vec.pop Opt.unwrap dst Vec.push
+        }
+    }
+}
+
+impl Print<Move> {
+    fn print(Move: m) {
+        "Move "  print 
+        m::n     print 
+        " from " print 
+        m::src   print 
+        " to "   print 
+        m::dst   print
+    }
+}
+
+fn parse_moves(Vec<String>: mut lines) -> [Vec<Move> Vec<String>] {
+    Vec.new::<Move> as [mut moves]
+
+    while &lines Vec.is_empty lnot {
+
+        *lines Vec.pop Opt.unwrap as [line]
+        &line String.size 0 == if {
+            moves lines return
+        }
+        &line String.as_str
+        Str.parse_next_num
+        Str.parse_next_num
+        Str.parse_next_num drop
+        cast(Move)
+        *moves Vec.push
+    }
+    "unreachable" println
+    1 exit
+    moves lines
+}
+
+fn parse_configuration(Vec<String>: mut lines) -> [Vec<Vec<char>>] {
+    Vec.new::<Vec<char>> as [mut board]
+    *lines Vec.pop Opt.unwrap as [columns] {
+        &columns String.size 1 + 4 / as [n] 
+        0 while dup n < {
+            Vec.new::<char> *board Vec.push
+            1 + 
+        } drop
+    }
+
+    while &lines Vec.is_empty lnot {
+        *lines Vec.pop Opt.unwrap as [line]
+        
+
+        1 0 while dup &board Vec.len < {
+            as [lookup idx]
+
+            lookup &line String.at Opt.unwrap as [c]
+            c ' ' != if {
+                idx *board Vec.get_mut Opt.unwrap  as [col]
+                c col Vec.push
+            }
+
+            lookup 4 + 
+            idx 1 +
+        } drop drop
+
+    }
+    board
+
+}
+
+fn part1(Str) -> [String] { 
+    File.read_to_string as [file_str]
+    &file_str split_lines
+    parse_moves parse_configuration as [mut moves mut board]
+    
+    while &moves Vec.is_empty lnot {
+        
+        *moves Vec.pop Opt.unwrap as [mv]
+        mv *board Move.take
+    }
+
+    "" String.new
+    0 while dup &board Vec.len < {
+        as [i]
+        i *board Vec.get_mut Opt.unwrap Vec.pop Opt.unwrap fmt
+        i 1 +
+    } drop
+
+}
+
+fn part2(Str) -> [String] { 
+    File.read_to_string as [file_str]
+    &file_str split_lines
+    parse_moves parse_configuration as [mut moves mut board]
+    
+    while &moves Vec.is_empty lnot {
+        
+        *moves Vec.pop Opt.unwrap as [mv]
+        mv *board Move.take2
+    }
+
+    "" String.new
+    0 while dup &board Vec.len < {
+        as [i]
+        i *board Vec.get_mut Opt.unwrap Vec.pop Opt.unwrap fmt
+        i 1 +
+    } drop
+}
+
+fn main() {
+    "aoc2022/day5/example.txt" part1 as [example]     
+    "Example answer: " print example println
+    &example String.as_str "CMZ" Str.equals assert
+
+    "aoc2022/day5/input.txt" part1 as [answer]     
+    "Part 1 answer: " print answer println
+    //answer 657 == assert
+
+    "aoc2022/day5/example.txt" part2 as [example]     
+    "Example answer: " print example println
+
+    "aoc2022/day5/input.txt" part2 as [answer]     
+    "Part 2 answer: " print answer println
+    //answer 938 == assert
+}

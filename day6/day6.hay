@@ -1,0 +1,59 @@
+include "aoc2022/aoc_utils.hay"
+
+fn Str.all_unique(Str: s) -> [bool] {
+    var bool[256]: contains_p
+    contains_p @ as [contains]
+    false contains memset
+
+    0 while dup s::size < {
+        as [i]
+        i &s Str.at cast(u64) as [idx]
+        idx contains Arr.at lnot if {
+            true idx contains Arr.set
+        } else {
+            false return
+        }
+        
+        i 1 +
+    } drop
+
+    true
+}
+
+fn walk(Str: s u64: window) -> [u64] {
+
+    0 while dup s::size window - < {
+        as [start]
+
+        start window s Str.substr Str.all_unique if {
+            start window + return
+        }
+        start 1 +
+    }
+}
+
+fn part1(Str) -> [u64] { 
+    File.read_to_string as [file_str]
+    &file_str String.as_str 4 walk 
+}
+
+fn part2(Str) -> [u64] { 
+    File.read_to_string as [file_str]
+    &file_str String.as_str 14 walk 
+}
+
+fn main() {
+    "aoc2022/day6/example.txt" part1 as [example]     
+    "Example answer: " print example println
+    example 7 == assert
+    
+    "aoc2022/day6/input.txt" part1 as [answer]     
+    "Part 1 answer: " print answer println
+    
+    "aoc2022/day6/example.txt" part2 as [example]     
+    "Example answer: " print example println
+    example 19 == assert
+
+    "aoc2022/day6/input.txt" part2 as [answer]     
+    "Part 2 answer: " print answer println
+}

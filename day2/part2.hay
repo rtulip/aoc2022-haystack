@@ -1,0 +1,57 @@
+include "aoc2022/aoc_utils.hay"
+include "aoc2022/day2/state.hay"
+include "aoc2022/day2/plays.hay"
+include "aoc2022/day2/part1.hay"
+
+struct Part2Game {
+    pub Plays: you
+    pub State: state
+impl:
+    fn Part2Game.from_line(Str: s) -> [Part2Game] {
+        0 &s Str.at 2 &s Str.at as [you state]
+        you   Plays.from_char
+        state State.from_char
+        cast(Part2Game)
+    }
+
+    fn Part2Game.deterime_play(Part2Game: game) -> [Plays] {
+        game::you Plays::Rock cast(Game) Game.play game::state == if {
+            Plays::Rock
+        } else game::you Plays::Paper cast(Game) Game.play game::state == if {
+            Plays::Paper
+        } else game::you Plays::Scissors cast(Game) Game.play game::state == if {
+            Plays::Scissors
+        } else {
+            "Unreachable" println
+            1 exit
+            Plays::Rock
+        }
+    }
+
+    fn Part2Game.score(Part2Game: game) -> [u64] {
+        game Part2Game.deterime_play Plays.score
+        game::state State.score +
+    }
+    
+}
+
+fn build_games_part2(Vec<String>: mut lines) -> [Vec<Part2Game>] {
+    Vec.new::<Part2Game> as [mut games]
+    while &lines Vec.is_empty lnot {
+        *lines Vec.pop Opt.unwrap as [s]
+        &s String.as_str Part2Game.from_line *games Vec.push
+    }
+    games
+}
+
+fn part2(Str) -> [u64] {
+    File.read_to_string   as [file_str]
+    &file_str split_lines build_games_part2 as [mut games]
+
+    0 while &games Vec.is_empty lnot {
+        *games Vec.pop Opt.unwrap as [game]
+        game Part2Game.score as [score] 
+
+        score +
+    }
+}

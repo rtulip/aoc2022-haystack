@@ -1,0 +1,12 @@
+fn split_lines(&String: s) -> [Vec<String>] {
+    Vec.new::<String> as [mut lines]
+    0 0 while dup s String.size < { as [i]
+        i s String.at Opt.unwrap '\n' == if {
+            as [start]
+            start i s String.substr *lines Vec.push
+            i 1 +
+        }
+        i 1 +
+    } drop drop 
+    lines
+}

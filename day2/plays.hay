@@ -1,0 +1,43 @@
+include "aoc2022/day2/state.hay"
+
+enum Plays { 
+    Rock 
+    Paper 
+    Scissors 
+}
+
+impl Print<Plays> {
+    fn print(Plays: play) {
+        play Plays::Rock == if {
+            "Rock" print
+        } else play Plays::Paper == if {
+            "Paper" print
+        } else {
+            "Scissors" print 
+        }
+    } 
+}
+
+fn Plays.from_char(char: c) -> [Plays] {
+    'A' c == 'X' c == lor if {
+        Plays::Rock
+    } else 'B' c == 'Y' c == lor if {
+        Plays::Paper
+    } else 'C' c == 'Z' c == lor if {
+        Plays::Scissors
+    } else {
+        Plays::Rock
+        "Bad input: `" print c print "`" println
+        1 exit
+    }
+}
+
+fn Plays.score(Plays: play) -> [u64] {
+    play Plays::Rock == if {
+        1 
+    } else play Plays::Paper == if {
+        2
+    } else {
+        3
+    }
+}

@@ -1,0 +1,22 @@
+include "aoc2022/day2/part1.hay"
+include "aoc2022/day2/part2.hay"
+
+fn main() {
+
+    "aoc2022/day2/example.txt" part1 as [example]     
+    "Example answer: " print example println
+    example 15 == assert
+    
+    "aoc2022/day2/input.txt" part1 as [answer]     
+    "Part 1 answer: " print answer println
+    answer 12855 == assert
+
+    "aoc2022/day2/example.txt" part2 as [example]     
+    "Example answer: " print example println
+    example 12 == assert
+
+    "aoc2022/day2/input.txt" part2 as [answer]     
+    "Part 2 answer: " print answer println
+    example 13726 == assert
+
+}

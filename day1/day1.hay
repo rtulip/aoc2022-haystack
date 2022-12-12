@@ -1,38 +1,28 @@
 
 fn split_lines(&String: s) -> [Vec<String>] {
-
     Vec.new::<String> as [mut lines]
-    
-    0 0 while dup s String.size < {
-        as [i]
-
+    0 0 while dup s String.size < { as [i]
         i s String.at Opt.unwrap '\n' == if {
             as [start]
             start i s String.substr *lines Vec.push
             i 1 +
         }
-
         i 1 +
     } drop drop
-
+    
     lines
-
 }
 
 fn calc_sums(&Vec<String>: nums) -> [Vec<u64>] {
     Vec.new::<u64> as [mut sums]
-
-    0 0 while dup nums Vec.len < {
-        as [i]
-
+    0 0 while dup nums Vec.len < { as [i]
         i nums Vec.get Opt.unwrap as [s]
         s String.size 0 == if {
-            *sums Vec.push
+            *sums Vec.push 
             0
         } else {
             s String.as_str Str.parse_u64 +
         }
-
         i 1 + 
     } drop drop
 
@@ -40,7 +30,6 @@ fn calc_sums(&Vec<String>: nums) -> [Vec<u64>] {
 }   
 
 fn part1(Str) -> [u64] {
-
     File.read_to_string   as [file_str]
     &file_str split_lines as [lines]
     &lines calc_sums Vec.bubble_sort as [mut sums]
@@ -48,7 +37,6 @@ fn part1(Str) -> [u64] {
 }
 
 fn part2(Str) -> [u64] {
-
     File.read_to_string   as [file_str]
     &file_str split_lines as [lines]
     &lines calc_sums Vec.bubble_sort as [mut sums]

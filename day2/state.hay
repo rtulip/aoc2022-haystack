@@ -1,0 +1,24 @@
+enum State { Win Draw Loss }
+fn State.from_char(char: c) -> [State] {
+    'X' c == if {
+        State::Loss
+    } else 'Y' c == if {
+        State::Draw
+    } else 'Z' c == if {
+        State::Win
+    } else {
+        State::Loss
+        "Bad input: `" print c print "`" println
+        1 exit
+    }
+}
+
+fn State.score(State: state) -> [u64] {
+    state State::Win == if {
+        6
+    } else state State::Draw == if {
+        3
+    } else {
+        0
+    }
+}

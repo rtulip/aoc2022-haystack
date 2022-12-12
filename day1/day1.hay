@@ -1,0 +1,74 @@
+
+fn split_lines(&String: s) -> [Vec<String>] {
+
+    Vec.new::<String> as [mut lines]
+    
+    0 0 while dup s String.size < {
+        as [i]
+
+        i s String.at Opt.unwrap '\n' == if {
+            as [start]
+            start i s String.substr *lines Vec.push
+            i 1 +
+        }
+
+        i 1 +
+    } drop drop
+
+    lines
+
+}
+
+fn calc_sums(&Vec<String>: nums) -> [Vec<u64>] {
+    Vec.new::<u64> as [mut sums]
+
+    0 0 while dup nums Vec.len < {
+        as [i]
+
+        i nums Vec.get Opt.unwrap as [s]
+        s String.size 0 == if {
+            *sums Vec.push
+            0
+        } else {
+            s String.as_str Str.parse_u64 +
+        }
+
+        i 1 + 
+    } drop drop
+
+    sums
+}   
+
+fn part1(Str) -> [u64] {
+
+    File.read_to_string   as [file_str]
+    &file_str split_lines as [lines]
+    &lines calc_sums Vec.bubble_sort as [mut sums]
+    *sums Vec.pop Opt.unwrap
+}
+
+fn part2(Str) -> [u64] {
+
+    File.read_to_string   as [file_str]
+    &file_str split_lines as [lines]
+    &lines calc_sums Vec.bubble_sort as [mut sums]
+    *sums Vec.pop Opt.unwrap
+    *sums Vec.pop Opt.unwrap + 
+    *sums Vec.pop Opt.unwrap +
+}
+
+fn main() {
+
+    "aoc2022/day1/example.txt" part1 as [example]     
+    "Example answer: " print example println
+    example 24000 == assert
+    
+    "aoc2022/day1/input.txt" part1 as [answer]
+    "Part 1 solution: " print answer println     
+    answer 67450 == assert
+
+    "aoc2022/day1/input.txt" part2 as [answer]
+    "Part 2 solution: " print answer println     
+    answer 199357 == assert
+
+}

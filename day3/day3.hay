@@ -61,6 +61,56 @@ fn line.priority(Str: s) -> [u64] {
     0
 }
 
+fn group.priority(Str: one Str: two Str: three) -> [u64] {
+    var bool[53]: lookup_one_p
+    var bool[53]: lookup_two_p
+    var bool[53]: lookup_three_p
+
+    lookup_one_p @ lookup_two_p @ lookup_three_p @ 
+    as [lookup_one lookup_two lookup_three]
+    false lookup_one memset
+    false lookup_two memset
+    false lookup_three memset
+
+    0 while dup one::size < { 
+        as [i]
+        i &one Str.at char.priority as [p]
+        true p lookup_one Arr.set
+        i 1 + 
+    } drop 
+
+    0 while dup two::size < { 
+        as [i]
+        i &two Str.at char.priority as [p]
+        true p lookup_two Arr.set
+        i 1 + 
+    } drop 
+
+    0 while dup three::size < { 
+        as [i]
+        i &three Str.at char.priority as [p]
+        true p lookup_three Arr.set
+        i 1 + 
+    } drop 
+
+    1 while dup 53 < {
+        as [i]
+
+        i lookup_one Arr.at
+        i lookup_two Arr.at land
+        i lookup_three Arr.at land if {
+            i return 
+        }
+
+        i 1 +
+    } drop
+
+    "unreachable" println
+    1 exit
+    0
+   
+}
+
 fn part1(Str) -> [u64] { 
     File.read_to_string as [file_str]
     &file_str split_lines as [mut lines]
@@ -72,7 +122,21 @@ fn part1(Str) -> [u64] {
 }
 
 
-fn part2(Str) -> [u64] { drop 1 }
+fn part2(Str) -> [u64] { 
+    File.read_to_string as [file_str]
+    &file_str split_lines as [mut lines]
+
+    0 while &lines Vec.is_empty lnot {
+        *lines Vec.pop Opt.unwrap 
+        *lines Vec.pop Opt.unwrap 
+        *lines Vec.pop Opt.unwrap 
+        as [one two three]
+        &one String.as_str
+        &two String.as_str
+        &three String.as_str
+        group.priority +
+    }
+}
 
 fn main() {
 
@@ -83,12 +147,12 @@ fn main() {
     "aoc2022/day3/input.txt" part1 as [answer]     
     "Part 1 answer: " print answer println
 
-    //"aoc2022/day3/example.txt" part2 as [example]     
-    //"Example answer: " print example println
-    //example 12 == assert
-    //
-    //"aoc2022/day3/input.txt" part2 as [answer]     
-    //"Part 2 answer: " print answer println
-    //example 13726 == assert
+    "aoc2022/day3/example.txt" part2 as [example]     
+    "Example answer: " print example println
+    example 70 == assert
+    
+    "aoc2022/day3/input.txt" part2 as [answer]     
+    "Part 2 answer: " print answer println
+    example 2703 == assert
 
 }

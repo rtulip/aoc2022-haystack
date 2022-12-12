@@ -9570,34 +9570,6 @@ fn_drop_Opt_Arr_u8___:
   mov  rax, [rax]
   mov  qword [frame_start_ptr], rax
   ret
-; fn drop<Str>
-fn_drop_Str_:
-  pop rax
-  sub  qword [frame_end_ptr], 8
-  mov  rbx, [frame_end_ptr]
-  mov  [rbx], rax
-  ; -- FrameReserve { bytes: 0 }
-  sub qword [frame_end_ptr], 0
-  ; -- StartBlock
-  ; -- PushToFrame { quad_words: 2 }
-  pop  rax
-  sub  qword [frame_end_ptr], 8
-  mov  rbx, [frame_end_ptr]
-  mov  [rbx], rax
-  pop  rax
-  sub  qword [frame_end_ptr], 8
-  mov  rbx, [frame_end_ptr]
-  mov  [rbx], rax
-  ; -- EndBlock { bytes_to_free: 16 }
-  add qword [frame_end_ptr], 16
-  ; -- Return
-  mov  rax, [frame_start_ptr]
-  push qword [rax-8]
-  mov  [frame_end_ptr], rax
-  add  qword [frame_end_ptr], 8
-  mov  rax, [rax]
-  mov  qword [frame_start_ptr], rax
-  ret
 ; fn drop<bool>
 fn_drop_bool_:
   pop rax
@@ -11621,6 +11593,776 @@ fn_free_char__jmp_dest_4:
   mov  rax, [rax]
   mov  qword [frame_start_ptr], rax
   ret
+; fn group.priority
+fn_group_dot_priority:
+  pop rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- FrameReserve { bytes: 1320 }
+  sub qword [frame_end_ptr], 1320
+  ; -- StartBlock
+  ; -- PushToFrame { quad_words: 2 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushToFrame { quad_words: 2 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushToFrame { quad_words: 2 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- InitLocalVarArr { offset_to_var: 0, offset_to_data: 16, data_size: 53, data_width: 8 }
+  mov rax, [frame_start_ptr]
+  sub rax, 16
+  mov rbx, [frame_start_ptr]
+  sub rbx, 448
+  mov [rax], rbx
+  sub rax, 8
+  mov rbx, 53
+  mov [rax], rbx
+  ; -- FramePtrToFrameReserve { offset: 0, size: 2, width: 8 }
+  mov  rax, [frame_start_ptr]
+  sub  rax, 24
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- InitLocalVarArr { offset_to_var: 440, offset_to_data: 456, data_size: 53, data_width: 8 }
+  mov rax, [frame_start_ptr]
+  sub rax, 456
+  mov rbx, [frame_start_ptr]
+  sub rbx, 888
+  mov [rax], rbx
+  sub rax, 8
+  mov rbx, 53
+  mov [rax], rbx
+  ; -- FramePtrToFrameReserve { offset: 440, size: 2, width: 8 }
+  mov  rax, [frame_start_ptr]
+  sub  rax, 464
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- InitLocalVarArr { offset_to_var: 880, offset_to_data: 896, data_size: 53, data_width: 8 }
+  mov rax, [frame_start_ptr]
+  sub rax, 896
+  mov rbx, [frame_start_ptr]
+  sub rbx, 1328
+  mov [rax], rbx
+  sub rax, 8
+  mov rbx, 53
+  mov [rax], rbx
+  ; -- FramePtrToFrameReserve { offset: 880, size: 2, width: 8 }
+  mov  rax, [frame_start_ptr]
+  sub  rax, 904
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushFromFrame { offset_from_end: 2, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 16
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Operator { op: Read, size: Some((2, 8)) }
+  pop  rax
+  mov  rbx, 0
+  mov  rbx, [rax]
+  push rbx
+  add  rax, 8
+  mov  rbx, 0
+  mov  rbx, [rax]
+  push rbx
+  ; -- PushFromFrame { offset_from_end: 1, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 8
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Operator { op: Read, size: Some((2, 8)) }
+  pop  rax
+  mov  rbx, 0
+  mov  rbx, [rax]
+  push rbx
+  add  rax, 8
+  mov  rbx, 0
+  mov  rbx, [rax]
+  push rbx
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Operator { op: Read, size: Some((2, 8)) }
+  pop  rax
+  mov  rbx, 0
+  mov  rbx, [rax]
+  push rbx
+  add  rax, 8
+  mov  rbx, 0
+  mov  rbx, [rax]
+  push rbx
+  ; -- PushToFrame { quad_words: 2 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushToFrame { quad_words: 2 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushToFrame { quad_words: 2 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushU64(0)
+  push 0
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 2 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Call("memset<bool>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_memset_bool_ ; -- memset<bool>
+  ; -- PushU64(0)
+  push 0
+  ; -- PushFromFrame { offset_from_end: 2, bytes: 2 }
+  mov rax, [frame_end_ptr]
+  add rax, 16
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Call("memset<bool>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_memset_bool_ ; -- memset<bool>
+  ; -- PushU64(0)
+  push 0
+  ; -- PushFromFrame { offset_from_end: 4, bytes: 2 }
+  mov rax, [frame_end_ptr]
+  add rax, 32
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Call("memset<bool>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_memset_bool_ ; -- memset<bool>
+  ; -- PushU64(0)
+  push 0
+  ; -- JumpDest { id: 0 }
+fn_group_dot_priority_jmp_dest_0:
+  ; -- Call("dup<u64>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_dup_u64_ ; -- dup<u64>
+  ; -- PushFromFrame { offset_from_end: 9, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 72
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Operator { op: LessThan, size: None }
+  mov  rcx, 0
+  mov  rdx, 1
+  pop  rbx
+  pop  rax
+  cmp  rax, rbx
+  cmovl rcx, rdx
+  push rcx
+  ; -- JumpFalse { dest_id: 1 }
+  pop  rax
+  test rax, rax
+  jz fn_group_dot_priority_jmp_dest_1
+  ; -- StartBlock
+  ; -- PushToFrame { quad_words: 1 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushPtrToFrame { offset_from_end: 10 }
+  mov rax, [frame_end_ptr]
+  add rax, 80
+  push rax
+  ; -- Call("Str.at")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_Str_dot_at ; -- Str.at
+  ; -- Call("char.priority")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_char_dot_priority ; -- char.priority
+  ; -- PushToFrame { quad_words: 1 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushU64(1)
+  push 1
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushFromFrame { offset_from_end: 2, bytes: 2 }
+  mov rax, [frame_end_ptr]
+  add rax, 16
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Call("Arr.set<bool>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_Arr_dot_set_bool_ ; -- Arr.set<bool>
+  ; -- PushFromFrame { offset_from_end: 1, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 8
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushU64(1)
+  push 1
+  ; -- Operator { op: Plus, size: None }
+  pop  rbx
+  pop  rax
+  add  rax, rbx
+  push rax
+  ; -- EndBlock { bytes_to_free: 16 }
+  add qword [frame_end_ptr], 16
+  ; -- Jump { dest_id: 0 }
+  jmp fn_group_dot_priority_jmp_dest_0
+  ; -- JumpDest { id: 1 }
+fn_group_dot_priority_jmp_dest_1:
+  ; -- Call("drop<u64>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_drop_u64_ ; -- drop<u64>
+  ; -- PushU64(0)
+  push 0
+  ; -- JumpDest { id: 3 }
+fn_group_dot_priority_jmp_dest_3:
+  ; -- Call("dup<u64>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_dup_u64_ ; -- dup<u64>
+  ; -- PushFromFrame { offset_from_end: 11, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 88
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Operator { op: LessThan, size: None }
+  mov  rcx, 0
+  mov  rdx, 1
+  pop  rbx
+  pop  rax
+  cmp  rax, rbx
+  cmovl rcx, rdx
+  push rcx
+  ; -- JumpFalse { dest_id: 4 }
+  pop  rax
+  test rax, rax
+  jz fn_group_dot_priority_jmp_dest_4
+  ; -- StartBlock
+  ; -- PushToFrame { quad_words: 1 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushPtrToFrame { offset_from_end: 12 }
+  mov rax, [frame_end_ptr]
+  add rax, 96
+  push rax
+  ; -- Call("Str.at")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_Str_dot_at ; -- Str.at
+  ; -- Call("char.priority")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_char_dot_priority ; -- char.priority
+  ; -- PushToFrame { quad_words: 1 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushU64(1)
+  push 1
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushFromFrame { offset_from_end: 4, bytes: 2 }
+  mov rax, [frame_end_ptr]
+  add rax, 32
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Call("Arr.set<bool>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_Arr_dot_set_bool_ ; -- Arr.set<bool>
+  ; -- PushFromFrame { offset_from_end: 1, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 8
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushU64(1)
+  push 1
+  ; -- Operator { op: Plus, size: None }
+  pop  rbx
+  pop  rax
+  add  rax, rbx
+  push rax
+  ; -- EndBlock { bytes_to_free: 16 }
+  add qword [frame_end_ptr], 16
+  ; -- Jump { dest_id: 3 }
+  jmp fn_group_dot_priority_jmp_dest_3
+  ; -- JumpDest { id: 4 }
+fn_group_dot_priority_jmp_dest_4:
+  ; -- Call("drop<u64>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_drop_u64_ ; -- drop<u64>
+  ; -- PushU64(0)
+  push 0
+  ; -- JumpDest { id: 6 }
+fn_group_dot_priority_jmp_dest_6:
+  ; -- Call("dup<u64>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_dup_u64_ ; -- dup<u64>
+  ; -- PushFromFrame { offset_from_end: 13, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 104
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Operator { op: LessThan, size: None }
+  mov  rcx, 0
+  mov  rdx, 1
+  pop  rbx
+  pop  rax
+  cmp  rax, rbx
+  cmovl rcx, rdx
+  push rcx
+  ; -- JumpFalse { dest_id: 7 }
+  pop  rax
+  test rax, rax
+  jz fn_group_dot_priority_jmp_dest_7
+  ; -- StartBlock
+  ; -- PushToFrame { quad_words: 1 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushPtrToFrame { offset_from_end: 14 }
+  mov rax, [frame_end_ptr]
+  add rax, 112
+  push rax
+  ; -- Call("Str.at")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_Str_dot_at ; -- Str.at
+  ; -- Call("char.priority")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_char_dot_priority ; -- char.priority
+  ; -- PushToFrame { quad_words: 1 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushU64(1)
+  push 1
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushFromFrame { offset_from_end: 6, bytes: 2 }
+  mov rax, [frame_end_ptr]
+  add rax, 48
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Call("Arr.set<bool>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_Arr_dot_set_bool_ ; -- Arr.set<bool>
+  ; -- PushFromFrame { offset_from_end: 1, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 8
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushU64(1)
+  push 1
+  ; -- Operator { op: Plus, size: None }
+  pop  rbx
+  pop  rax
+  add  rax, rbx
+  push rax
+  ; -- EndBlock { bytes_to_free: 16 }
+  add qword [frame_end_ptr], 16
+  ; -- Jump { dest_id: 6 }
+  jmp fn_group_dot_priority_jmp_dest_6
+  ; -- JumpDest { id: 7 }
+fn_group_dot_priority_jmp_dest_7:
+  ; -- Call("drop<u64>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_drop_u64_ ; -- drop<u64>
+  ; -- PushU64(1)
+  push 1
+  ; -- JumpDest { id: 9 }
+fn_group_dot_priority_jmp_dest_9:
+  ; -- Call("dup<u64>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_dup_u64_ ; -- dup<u64>
+  ; -- PushU64(53)
+  push 53
+  ; -- Operator { op: LessThan, size: None }
+  mov  rcx, 0
+  mov  rdx, 1
+  pop  rbx
+  pop  rax
+  cmp  rax, rbx
+  cmovl rcx, rdx
+  push rcx
+  ; -- JumpFalse { dest_id: 10 }
+  pop  rax
+  test rax, rax
+  jz fn_group_dot_priority_jmp_dest_10
+  ; -- StartBlock
+  ; -- PushToFrame { quad_words: 1 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushFromFrame { offset_from_end: 1, bytes: 2 }
+  mov rax, [frame_end_ptr]
+  add rax, 8
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Call("Arr.at<bool>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_Arr_dot_at_bool_ ; -- Arr.at<bool>
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushFromFrame { offset_from_end: 3, bytes: 2 }
+  mov rax, [frame_end_ptr]
+  add rax, 24
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Call("Arr.at<bool>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_Arr_dot_at_bool_ ; -- Arr.at<bool>
+  ; -- Call("land")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_land ; -- land
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushFromFrame { offset_from_end: 5, bytes: 2 }
+  mov rax, [frame_end_ptr]
+  add rax, 40
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Call("Arr.at<bool>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_Arr_dot_at_bool_ ; -- Arr.at<bool>
+  ; -- Call("land")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_land ; -- land
+  ; -- JumpFalse { dest_id: 11 }
+  pop  rax
+  test rax, rax
+  jz fn_group_dot_priority_jmp_dest_11
+  ; -- StartBlock
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Return
+  mov  rax, [frame_start_ptr]
+  push qword [rax-8]
+  mov  [frame_end_ptr], rax
+  add  qword [frame_end_ptr], 8
+  mov  rax, [rax]
+  mov  qword [frame_start_ptr], rax
+  ret
+  ; -- EndBlock { bytes_to_free: 0 }
+  add qword [frame_end_ptr], 0
+  ; -- Jump { dest_id: 11 }
+  jmp fn_group_dot_priority_jmp_dest_11
+  ; -- JumpDest { id: 11 }
+fn_group_dot_priority_jmp_dest_11:
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushU64(1)
+  push 1
+  ; -- Operator { op: Plus, size: None }
+  pop  rbx
+  pop  rax
+  add  rax, rbx
+  push rax
+  ; -- EndBlock { bytes_to_free: 8 }
+  add qword [frame_end_ptr], 8
+  ; -- Jump { dest_id: 9 }
+  jmp fn_group_dot_priority_jmp_dest_9
+  ; -- JumpDest { id: 10 }
+fn_group_dot_priority_jmp_dest_10:
+  ; -- Call("drop<u64>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_drop_u64_ ; -- drop<u64>
+  ; -- PushU64(11)
+  push 11
+  ; -- PushGlobal { id: "str_42" }
+  push str_42
+  ; -- Call("println<T><Str>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_println_T__Str_ ; -- println<T><Str>
+  ; -- PushU64(1)
+  push 1
+  ; -- Call("exit")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_exit ; -- exit
+  ; -- PushU64(0)
+  push 0
+  ; -- EndBlock { bytes_to_free: 1440 }
+  add qword [frame_end_ptr], 1440
+  ; -- Return
+  mov  rax, [frame_start_ptr]
+  push qword [rax-8]
+  mov  [frame_end_ptr], rax
+  add  qword [frame_end_ptr], 8
+  mov  rax, [rax]
+  mov  qword [frame_start_ptr], rax
+  ret
 ; fn land
 fn_land:
   pop rax
@@ -12252,8 +12994,8 @@ fn_line_dot_priority_jmp_dest_4:
   call fn_drop_u64_ ; -- drop<u64>
   ; -- PushU64(11)
   push 11
-  ; -- PushGlobal { id: "str_42" }
-  push str_42
+  ; -- PushGlobal { id: "str_43" }
+  push str_43
   ; -- Call("println<T><Str>")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
@@ -12419,8 +13161,8 @@ fn_main:
   ; -- StartBlock
   ; -- PushU64(24)
   push 24
-  ; -- PushGlobal { id: "str_43" }
-  push str_43
+  ; -- PushGlobal { id: "str_44" }
+  push str_44
   ; -- Call("part1")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
@@ -12436,8 +13178,8 @@ fn_main:
   mov  [rbx], rax
   ; -- PushU64(16)
   push 16
-  ; -- PushGlobal { id: "str_44" }
-  push str_44
+  ; -- PushGlobal { id: "str_45" }
+  push str_45
   ; -- Call("print<T><Str>")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
@@ -12486,8 +13228,8 @@ fn_main:
   call fn_assert ; -- assert
   ; -- PushU64(22)
   push 22
-  ; -- PushGlobal { id: "str_45" }
-  push str_45
+  ; -- PushGlobal { id: "str_46" }
+  push str_46
   ; -- Call("part1")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
@@ -12503,8 +13245,8 @@ fn_main:
   mov  [rbx], rax
   ; -- PushU64(15)
   push 15
-  ; -- PushGlobal { id: "str_46" }
-  push str_46
+  ; -- PushGlobal { id: "str_47" }
+  push str_47
   ; -- Call("print<T><Str>")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
@@ -12527,8 +13269,142 @@ fn_main:
   mov  rax, [frame_end_ptr]
   mov  qword [frame_start_ptr], rax
   call fn_println_T__u64_ ; -- println<T><u64>
-  ; -- EndBlock { bytes_to_free: 16 }
-  add qword [frame_end_ptr], 16
+  ; -- PushU64(24)
+  push 24
+  ; -- PushGlobal { id: "str_48" }
+  push str_48
+  ; -- Call("part2")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_part2 ; -- part2
+  ; -- PushToFrame { quad_words: 1 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushU64(16)
+  push 16
+  ; -- PushGlobal { id: "str_49" }
+  push str_49
+  ; -- Call("print<T><Str>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_print_T__Str_ ; -- print<T><Str>
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Call("println<T><u64>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_println_T__u64_ ; -- println<T><u64>
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushU64(70)
+  push 70
+  ; -- Operator { op: Equal, size: None }
+  mov  rcx, 0
+  mov  rdx, 1
+  pop  rbx
+  pop  rax
+  cmp  rax, rbx
+  cmove rcx, rdx
+  push rcx
+  ; -- Call("assert")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_assert ; -- assert
+  ; -- PushU64(22)
+  push 22
+  ; -- PushGlobal { id: "str_50" }
+  push str_50
+  ; -- Call("part2")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_part2 ; -- part2
+  ; -- PushToFrame { quad_words: 1 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushU64(15)
+  push 15
+  ; -- PushGlobal { id: "str_51" }
+  push str_51
+  ; -- Call("print<T><Str>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_print_T__Str_ ; -- print<T><Str>
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- Call("println<T><u64>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_println_T__u64_ ; -- println<T><u64>
+  ; -- PushFromFrame { offset_from_end: 1, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 8
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushU64(13726)
+  push 13726
+  ; -- Operator { op: Equal, size: None }
+  mov  rcx, 0
+  mov  rdx, 1
+  pop  rbx
+  pop  rax
+  cmp  rax, rbx
+  cmove rcx, rdx
+  push rcx
+  ; -- Call("assert")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_assert ; -- assert
+  ; -- EndBlock { bytes_to_free: 32 }
+  add qword [frame_end_ptr], 32
   ; -- Return
   mov  rax, [frame_start_ptr]
   push qword [rax-8]
@@ -14345,8 +15221,8 @@ fn_mmap__new__chunk:
   ; -- StartBlock
   ; -- PushU64(6)
   push 6
-  ; -- PushGlobal { id: "str_47" }
-  push str_47
+  ; -- PushGlobal { id: "str_52" }
+  push str_52
   ; -- Call("print<T><Str>")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
@@ -14371,8 +15247,8 @@ fn_mmap__new__chunk:
   call fn_print_T__u64_ ; -- print<T><u64>
   ; -- PushU64(25)
   push 25
-  ; -- PushGlobal { id: "str_48" }
-  push str_48
+  ; -- PushGlobal { id: "str_53" }
+  push str_53
   ; -- Call("println<T><Str>")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
@@ -14463,8 +15339,8 @@ fn_mmap__new__chunk_jmp_dest_0:
   ; -- StartBlock
   ; -- PushU64(26)
   push 26
-  ; -- PushGlobal { id: "str_49" }
-  push str_49
+  ; -- PushGlobal { id: "str_54" }
+  push str_54
   ; -- Call("println<T><Str>")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
@@ -14615,8 +15491,8 @@ fn_mmap__new__chunk_jmp_dest_1:
   ; -- StartBlock
   ; -- PushU64(47)
   push 47
-  ; -- PushGlobal { id: "str_50" }
-  push str_50
+  ; -- PushGlobal { id: "str_55" }
+  push str_55
   ; -- Call("println<T><Str>")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
@@ -14627,8 +15503,8 @@ fn_mmap__new__chunk_jmp_dest_1:
   call fn_println_T__Str_ ; -- println<T><Str>
   ; -- PushU64(32)
   push 32
-  ; -- PushGlobal { id: "str_51" }
-  push str_51
+  ; -- PushGlobal { id: "str_56" }
+  push str_56
   ; -- Call("println<T><Str>")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
@@ -15095,18 +15971,265 @@ fn_part2:
   ; -- FrameReserve { bytes: 0 }
   sub qword [frame_end_ptr], 0
   ; -- StartBlock
-  ; -- Call("drop<Str>")
+  ; -- Call("File.read_to_string")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
   mov  rbx, [frame_end_ptr]
   mov  [rbx], rax
   mov  rax, [frame_end_ptr]
   mov  qword [frame_start_ptr], rax
-  call fn_drop_Str_ ; -- drop<Str>
-  ; -- PushU64(1)
-  push 1
-  ; -- EndBlock { bytes_to_free: 0 }
-  add qword [frame_end_ptr], 0
+  call fn_File_dot_read__to__string ; -- File.read_to_string
+  ; -- PushToFrame { quad_words: 3 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushPtrToFrame { offset_from_end: 0 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  push rax
+  ; -- Call("split_lines")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_split__lines ; -- split_lines
+  ; -- PushToFrame { quad_words: 3 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushU64(0)
+  push 0
+  ; -- JumpDest { id: 0 }
+fn_part2_jmp_dest_0:
+  ; -- PushPtrToFrame { offset_from_end: 0 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  push rax
+  ; -- StartBlock
+  ; -- PushToFrame { quad_words: 1 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushFromFrame { offset_from_end: 0, bytes: 1 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  mov rbx, [rax]
+  push rbx
+  add rax, 8
+  ; -- PushU64(16)
+  push 16
+  ; -- Operator { op: Plus, size: None }
+  pop  rbx
+  pop  rax
+  add  rax, rbx
+  push rax
+  ; -- Operator { op: Read, size: Some((1, 8)) }
+  pop  rax
+  mov  rbx, 0
+  mov  rbx, [rax]
+  push rbx
+  ; -- PushU64(0)
+  push 0
+  ; -- Operator { op: Equal, size: None }
+  mov  rcx, 0
+  mov  rdx, 1
+  pop  rbx
+  pop  rax
+  cmp  rax, rbx
+  cmove rcx, rdx
+  push rcx
+  ; -- EndBlock { bytes_to_free: 8 }
+  add qword [frame_end_ptr], 8
+  ; -- Call("lnot")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_lnot ; -- lnot
+  ; -- JumpFalse { dest_id: 1 }
+  pop  rax
+  test rax, rax
+  jz fn_part2_jmp_dest_1
+  ; -- StartBlock
+  ; -- PushPtrToFrame { offset_from_end: 0 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  push rax
+  ; -- Call("Vec.pop<String>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_Vec_dot_pop_String_ ; -- Vec.pop<String>
+  ; -- Call("Opt.unwrap<String>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_Opt_dot_unwrap_String_ ; -- Opt.unwrap<String>
+  ; -- PushPtrToFrame { offset_from_end: 0 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  push rax
+  ; -- Call("Vec.pop<String>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_Vec_dot_pop_String_ ; -- Vec.pop<String>
+  ; -- Call("Opt.unwrap<String>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_Opt_dot_unwrap_String_ ; -- Opt.unwrap<String>
+  ; -- PushPtrToFrame { offset_from_end: 0 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  push rax
+  ; -- Call("Vec.pop<String>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_Vec_dot_pop_String_ ; -- Vec.pop<String>
+  ; -- Call("Opt.unwrap<String>")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_Opt_dot_unwrap_String_ ; -- Opt.unwrap<String>
+  ; -- PushToFrame { quad_words: 3 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushToFrame { quad_words: 3 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushToFrame { quad_words: 3 }
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  pop  rax
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  ; -- PushPtrToFrame { offset_from_end: 0 }
+  mov rax, [frame_end_ptr]
+  add rax, 0
+  push rax
+  ; -- Call("String.as_str")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_String_dot_as__str ; -- String.as_str
+  ; -- PushPtrToFrame { offset_from_end: 3 }
+  mov rax, [frame_end_ptr]
+  add rax, 24
+  push rax
+  ; -- Call("String.as_str")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_String_dot_as__str ; -- String.as_str
+  ; -- PushPtrToFrame { offset_from_end: 6 }
+  mov rax, [frame_end_ptr]
+  add rax, 48
+  push rax
+  ; -- Call("String.as_str")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_String_dot_as__str ; -- String.as_str
+  ; -- Call("group.priority")
+  mov rax, [frame_start_ptr]
+  sub  qword [frame_end_ptr], 8
+  mov  rbx, [frame_end_ptr]
+  mov  [rbx], rax
+  mov  rax, [frame_end_ptr]
+  mov  qword [frame_start_ptr], rax
+  call fn_group_dot_priority ; -- group.priority
+  ; -- Operator { op: Plus, size: None }
+  pop  rbx
+  pop  rax
+  add  rax, rbx
+  push rax
+  ; -- EndBlock { bytes_to_free: 72 }
+  add qword [frame_end_ptr], 72
+  ; -- Jump { dest_id: 0 }
+  jmp fn_part2_jmp_dest_0
+  ; -- JumpDest { id: 1 }
+fn_part2_jmp_dest_1:
+  ; -- EndBlock { bytes_to_free: 48 }
+  add qword [frame_end_ptr], 48
   ; -- Return
   mov  rax, [frame_start_ptr]
   push qword [rax-8]
@@ -15180,8 +16303,8 @@ fn_print_T__bool_:
   ; -- StartBlock
   ; -- PushU64(4)
   push 4
-  ; -- PushGlobal { id: "str_52" }
-  push str_52
+  ; -- PushGlobal { id: "str_57" }
+  push str_57
   ; -- EndBlock { bytes_to_free: 0 }
   add qword [frame_end_ptr], 0
   ; -- Jump { dest_id: 1 }
@@ -15191,8 +16314,8 @@ fn_print_T__bool__jmp_dest_0:
   ; -- StartBlock
   ; -- PushU64(5)
   push 5
-  ; -- PushGlobal { id: "str_53" }
-  push str_53
+  ; -- PushGlobal { id: "str_58" }
+  push str_58
   ; -- EndBlock { bytes_to_free: 0 }
   add qword [frame_end_ptr], 0
   ; -- Jump { dest_id: 1 }
@@ -15335,8 +16458,8 @@ fn_println_T__Str_:
   call fn_print_T__Str_ ; -- print<T><Str>
   ; -- PushU64(1)
   push 1
-  ; -- PushGlobal { id: "str_54" }
-  push str_54
+  ; -- PushGlobal { id: "str_59" }
+  push str_59
   ; -- Call("print<T><Str>")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
@@ -15374,8 +16497,8 @@ fn_println_T__bool_:
   call fn_print_T__bool_ ; -- print<T><bool>
   ; -- PushU64(1)
   push 1
-  ; -- PushGlobal { id: "str_55" }
-  push str_55
+  ; -- PushGlobal { id: "str_60" }
+  push str_60
   ; -- Call("print<T><Str>")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
@@ -15413,8 +16536,8 @@ fn_println_T__char_:
   call fn_print_T__char_ ; -- print<T><char>
   ; -- PushU64(1)
   push 1
-  ; -- PushGlobal { id: "str_56" }
-  push str_56
+  ; -- PushGlobal { id: "str_61" }
+  push str_61
   ; -- Call("print<T><Str>")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
@@ -15452,8 +16575,8 @@ fn_println_T__u64_:
   call fn_print_T__u64_ ; -- print<T><u64>
   ; -- PushU64(1)
   push 1
-  ; -- PushGlobal { id: "str_57" }
-  push str_57
+  ; -- PushGlobal { id: "str_62" }
+  push str_62
   ; -- Call("print<T><Str>")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
@@ -17267,8 +18390,8 @@ fn_to__string__amp_bool_:
   ; -- StartBlock
   ; -- PushU64(4)
   push 4
-  ; -- PushGlobal { id: "str_58" }
-  push str_58
+  ; -- PushGlobal { id: "str_63" }
+  push str_63
   ; -- EndBlock { bytes_to_free: 0 }
   add qword [frame_end_ptr], 0
   ; -- Jump { dest_id: 1 }
@@ -17278,8 +18401,8 @@ fn_to__string__amp_bool__jmp_dest_0:
   ; -- StartBlock
   ; -- PushU64(5)
   push 5
-  ; -- PushGlobal { id: "str_59" }
-  push str_59
+  ; -- PushGlobal { id: "str_64" }
+  push str_64
   ; -- EndBlock { bytes_to_free: 0 }
   add qword [frame_end_ptr], 0
   ; -- Jump { dest_id: 1 }
@@ -17555,8 +18678,8 @@ fn_to__string_bool_:
   ; -- StartBlock
   ; -- PushU64(4)
   push 4
-  ; -- PushGlobal { id: "str_60" }
-  push str_60
+  ; -- PushGlobal { id: "str_65" }
+  push str_65
   ; -- EndBlock { bytes_to_free: 0 }
   add qword [frame_end_ptr], 0
   ; -- Jump { dest_id: 1 }
@@ -17566,8 +18689,8 @@ fn_to__string_bool__jmp_dest_0:
   ; -- StartBlock
   ; -- PushU64(5)
   push 5
-  ; -- PushGlobal { id: "str_61" }
-  push str_61
+  ; -- PushGlobal { id: "str_66" }
+  push str_66
   ; -- EndBlock { bytes_to_free: 0 }
   add qword [frame_end_ptr], 0
   ; -- Jump { dest_id: 1 }
@@ -17820,8 +18943,8 @@ fn_u64_dot_to__str:
   ; -- StartBlock
   ; -- PushU64(52)
   push 52
-  ; -- PushGlobal { id: "str_62" }
-  push str_62
+  ; -- PushGlobal { id: "str_67" }
+  push str_67
   ; -- Call("println<T><Str>")
   mov rax, [frame_start_ptr]
   sub  qword [frame_end_ptr], 8
@@ -17869,8 +18992,8 @@ fn_u64_dot_to__str_jmp_dest_0:
   ; -- StartBlock
   ; -- PushU64(1)
   push 1
-  ; -- PushGlobal { id: "str_63" }
-  push str_63
+  ; -- PushGlobal { id: "str_68" }
+  push str_68
   ; -- PushToFrame { quad_words: 2 }
   pop  rax
   sub  qword [frame_end_ptr], 8
@@ -18315,8 +19438,8 @@ fn_write_bool_:
   ; -- StartBlock
   ; -- PushU64(4)
   push 4
-  ; -- PushGlobal { id: "str_64" }
-  push str_64
+  ; -- PushGlobal { id: "str_69" }
+  push str_69
   ; -- EndBlock { bytes_to_free: 0 }
   add qword [frame_end_ptr], 0
   ; -- Jump { dest_id: 1 }
@@ -18326,8 +19449,8 @@ fn_write_bool__jmp_dest_0:
   ; -- StartBlock
   ; -- PushU64(5)
   push 5
-  ; -- PushGlobal { id: "str_65" }
-  push str_65
+  ; -- PushGlobal { id: "str_70" }
+  push str_70
   ; -- EndBlock { bytes_to_free: 0 }
   add qword [frame_end_ptr], 0
   ; -- Jump { dest_id: 1 }
@@ -18569,72 +19692,77 @@ exit:
   syscall
 
 segment .data
-  str_20: db 0x55, 0x6e, 0x77, 0x72, 0x61, 0x70, 0x70, 0x65, 0x64, 0x20, 0x61, 0x20, 0x4e, 0x6f, 0x6e, 0x65, 0x20, 0x76, 0x61, 0x72, 0x69, 0x61, 0x6e, 0x74, 
-  str_52: db 0x74, 0x72, 0x75, 0x65, 
-  str_6: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x53, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
-  str_30: db 0x29, 
-  str_60: db 0x74, 0x72, 0x75, 0x65, 
-  str_45: db 0x61, 0x6f, 0x63, 0x32, 0x30, 0x32, 0x32, 0x2f, 0x64, 0x61, 0x79, 0x33, 0x2f, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x2e, 0x74, 0x78, 0x74, 
-  str_19: db 0x55, 0x6e, 0x77, 0x72, 0x61, 0x70, 0x70, 0x65, 0x64, 0x20, 0x61, 0x20, 0x4e, 0x6f, 0x6e, 0x65, 0x20, 0x76, 0x61, 0x72, 0x69, 0x61, 0x6e, 0x74, 
-  str_39: db 0x66, 0x61, 0x6c, 0x73, 0x65, 
-  str_47: db 0x53, 0x69, 0x7a, 0x65, 0x20, 0x60, 
-  str_31: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x74, 0x61, 0x6b, 0x65, 0x20, 0x73, 0x75, 0x62, 0x73, 0x6c, 0x69, 0x63, 0x65, 0x20, 0x6f, 0x66, 0x20, 0x56, 0x65, 0x63, 0x20, 0x77, 0x68, 0x65, 0x72, 0x65, 0x20, 0x73, 0x74, 0x61, 0x72, 0x74, 0x20, 0x3c, 0x20, 0x65, 0x6e, 0x64, 
-  str_17: db 0x20, 0x20, 0x2a, 0x20, 
-  str_29: db 0x29, 0x20, 0x69, 0x73, 0x20, 0x67, 0x72, 0x65, 0x61, 0x74, 0x65, 0x72, 0x20, 0x74, 0x68, 0x61, 0x6e, 0x20, 0x73, 0x74, 0x61, 0x72, 0x74, 0x28, 
-  str_34: db 0x41, 0x73, 0x73, 0x65, 0x72, 0x74, 0x69, 0x6f, 0x6e, 0x20, 0x66, 0x61, 0x69, 0x6c, 0x65, 0x64, 
-  str_42: db 0x75, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x61, 0x62, 0x6c, 0x65, 
-  str_12: db 0x20, 
-  str_40: db 0x74, 0x72, 0x75, 0x65, 
-  str_53: db 0x66, 0x61, 0x6c, 0x73, 0x65, 
-  str_9: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x53, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
-  str_27: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x73, 0x70, 0x6c, 0x69, 0x74, 0x2c, 0x20, 0x69, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x74, 0x6f, 0x6f, 0x20, 0x68, 0x69, 0x67, 0x68, 0x21, 
-  str_43: db 0x61, 0x6f, 0x63, 0x32, 0x30, 0x32, 0x32, 0x2f, 0x64, 0x61, 0x79, 0x33, 0x2f, 0x65, 0x78, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x2e, 0x74, 0x78, 0x74, 
-  str_54: db 0xa, 
-  str_35: db 0x74, 0x72, 0x75, 0x65, 
-  str_41: db 0x66, 0x61, 0x6c, 0x73, 0x65, 
-  str_3: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x47, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
-  chunks_p: dq 100000, data_0
-  str_55: db 0xa, 
-  str_58: db 0x74, 0x72, 0x75, 0x65, 
-  str_62: db 0x4d, 0x75, 0x73, 0x74, 0x20, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x20, 0x61, 0x74, 0x20, 0x6c, 0x65, 0x61, 0x73, 0x74, 0x20, 0x32, 0x30, 0x20, 0x63, 0x68, 0x61, 0x72, 0x73, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x75, 0x66, 0x66, 0x65, 0x72, 0x20, 0x74, 0x6f, 0x20, 0x63, 0x6f, 0x70, 0x79, 0x20, 0x75, 0x36, 0x34, 
-  str_23: db 0x45, 0x78, 0x70, 0x65, 0x63, 0x74, 0x65, 0x64, 0x20, 0x61, 0x20, 0x66, 0x75, 0x6c, 0x6c, 0x79, 0x20, 0x6e, 0x75, 0x6d, 0x65, 0x72, 0x69, 0x63, 0x20, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2e, 0x20, 0x46, 0x6f, 0x75, 0x6e, 0x64, 0x3a, 0x20, 0x60, 
-  str_48: db 0x60, 0x20, 0x69, 0x73, 0x6e, 0x27, 0x74, 0x20, 0x70, 0x61, 0x67, 0x65, 0x2d, 0x73, 0x69, 0x7a, 0x65, 0x20, 0x61, 0x6c, 0x69, 0x67, 0x6e, 0x65, 0x64, 
-  str_22: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x69, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x69, 0x6e, 0x74, 0x6f, 0x20, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2e, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 
-  str_32: db 0x53, 0x74, 0x61, 0x72, 0x74, 0x3a, 0x20, 
-  str_50: db 0x47, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x20, 0x61, 0x6c, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x6f, 0x72, 0x20, 0x72, 0x61, 0x6e, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x72, 0x6f, 0x6f, 0x6d, 0x20, 0x66, 0x6f, 0x72, 0x20, 0x6e, 0x65, 0x77, 0x20, 0x63, 0x68, 0x75, 0x6e, 0x6b, 0x73, 
-  str_15: db 0x53, 0x79, 0x73, 0x63, 0x61, 0x6c, 0x6c, 0x20, 0x60, 0x66, 0x73, 0x74, 0x61, 0x74, 0x60, 0x20, 0x66, 0x61, 0x69, 0x6c, 0x65, 0x64, 0x20, 
-  str_8: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x53, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
-  str_10: db 0x5b, 
-  str_44: db 0x45, 0x78, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x20, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x3a, 0x20, 
-  str_61: db 0x66, 0x61, 0x6c, 0x73, 0x65, 
-  str_64: db 0x74, 0x72, 0x75, 0x65, 
-  str_59: db 0x66, 0x61, 0x6c, 0x73, 0x65, 
-  str_57: db 0xa, 
-  str_49: db 0x45, 0x72, 0x72, 0x6f, 0x72, 0x3a, 0x20, 0x6d, 0x6d, 0x61, 0x70, 0x20, 0x63, 0x61, 0x6c, 0x6c, 0x20, 0x66, 0x61, 0x69, 0x6c, 0x65, 0x64, 0x2e, 0x2e, 0x2e, 
-  str_14: db 0x5d, 0x20, 
-  str_56: db 0xa, 
-  str_18: db 0x55, 0x6e, 0x77, 0x72, 0x61, 0x70, 0x70, 0x65, 0x64, 0x20, 0x61, 0x20, 0x4e, 0x6f, 0x6e, 0x65, 0x20, 0x76, 0x61, 0x72, 0x69, 0x61, 0x6e, 0x74, 
-  str_33: db 0x45, 0x6e, 0x64, 0x3a, 0x20, 0x20, 0x20, 
-  str_2: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x47, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
-  str_36: db 0x66, 0x61, 0x6c, 0x73, 0x65, 
-  str_26: db 0x60, 0x20, 0x69, 0x73, 0x20, 0x6e, 0x6f, 0x74, 0x20, 0x6e, 0x75, 0x6d, 0x65, 0x72, 0x69, 0x63, 
-  str_38: db 0x74, 0x72, 0x75, 0x65, 
-  str_51: db 0x20, 0x20, 0x4e, 0x6f, 0x74, 0x65, 0x3a, 0x20, 0x4d, 0x61, 0x78, 0x65, 0x64, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x6e, 0x20, 0x68, 0x65, 0x61, 0x70, 0x20, 0x6d, 0x65, 0x6d, 0x6f, 0x72, 0x79, 
-  str_4: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x47, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
   str_25: db 0x43, 0x68, 0x61, 0x72, 0x20, 0x60, 
-  str_65: db 0x66, 0x61, 0x6c, 0x73, 0x65, 
-  str_37: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x70, 0x61, 0x72, 0x73, 0x65, 0x20, 0x75, 0x38, 0x20, 0x66, 0x72, 0x6f, 0x6d, 0x20, 0x6e, 0x6f, 0x6e, 0x2d, 0x6e, 0x75, 0x6d, 0x65, 0x72, 0x69, 0x63, 0x20, 0x63, 0x68, 0x61, 0x72, 0x3a, 0x20, 
-  str_21: db 0x55, 0x6e, 0x77, 0x72, 0x61, 0x70, 0x70, 0x65, 0x64, 0x20, 0x61, 0x20, 0x4e, 0x6f, 0x6e, 0x65, 0x20, 0x76, 0x61, 0x72, 0x69, 0x61, 0x6e, 0x74, 
-  str_16: db 0x48, 0x65, 0x61, 0x70, 0x3a, 
-  str_7: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x53, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
-  str_63: db 0x30, 
-  str_46: db 0x50, 0x61, 0x72, 0x74, 0x20, 0x31, 0x20, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x3a, 0x20, 
-  str_11: db 0x20, 0x7c, 0x20, 
-  str_28: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x74, 0x61, 0x6b, 0x65, 0x20, 0x73, 0x75, 0x62, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x20, 0x77, 0x68, 0x65, 0x72, 0x65, 0x20, 0x65, 0x6e, 0x64, 0x20, 0x28, 
-  str_24: db 0x60, 
-  str_1: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x47, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
-  str_13: db 0x20, 0x7c, 0x20, 
+  str_43: db 0x75, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x61, 0x62, 0x6c, 0x65, 
+  str_42: db 0x75, 0x6e, 0x72, 0x65, 0x61, 0x63, 0x68, 0x61, 0x62, 0x6c, 0x65, 
+  str_50: db 0x61, 0x6f, 0x63, 0x32, 0x30, 0x32, 0x32, 0x2f, 0x64, 0x61, 0x79, 0x33, 0x2f, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x2e, 0x74, 0x78, 0x74, 
+  str_41: db 0x66, 0x61, 0x6c, 0x73, 0x65, 
+  str_9: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x53, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
+  str_44: db 0x61, 0x6f, 0x63, 0x32, 0x30, 0x32, 0x32, 0x2f, 0x64, 0x61, 0x79, 0x33, 0x2f, 0x65, 0x78, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x2e, 0x74, 0x78, 0x74, 
+  str_54: db 0x45, 0x72, 0x72, 0x6f, 0x72, 0x3a, 0x20, 0x6d, 0x6d, 0x61, 0x70, 0x20, 0x63, 0x61, 0x6c, 0x6c, 0x20, 0x66, 0x61, 0x69, 0x6c, 0x65, 0x64, 0x2e, 0x2e, 0x2e, 
   str_5: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x47, 0x65, 0x74, 0x20, 0x52, 0x65, 0x66, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
+  str_18: db 0x55, 0x6e, 0x77, 0x72, 0x61, 0x70, 0x70, 0x65, 0x64, 0x20, 0x61, 0x20, 0x4e, 0x6f, 0x6e, 0x65, 0x20, 0x76, 0x61, 0x72, 0x69, 0x61, 0x6e, 0x74, 
+  str_4: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x47, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
+  str_30: db 0x29, 
+  str_32: db 0x53, 0x74, 0x61, 0x72, 0x74, 0x3a, 0x20, 
+  str_35: db 0x74, 0x72, 0x75, 0x65, 
+  str_37: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x70, 0x61, 0x72, 0x73, 0x65, 0x20, 0x75, 0x38, 0x20, 0x66, 0x72, 0x6f, 0x6d, 0x20, 0x6e, 0x6f, 0x6e, 0x2d, 0x6e, 0x75, 0x6d, 0x65, 0x72, 0x69, 0x63, 0x20, 0x63, 0x68, 0x61, 0x72, 0x3a, 0x20, 
+  str_66: db 0x66, 0x61, 0x6c, 0x73, 0x65, 
+  str_17: db 0x20, 0x20, 0x2a, 0x20, 
+  str_16: db 0x48, 0x65, 0x61, 0x70, 0x3a, 
+  str_36: db 0x66, 0x61, 0x6c, 0x73, 0x65, 
+  str_53: db 0x60, 0x20, 0x69, 0x73, 0x6e, 0x27, 0x74, 0x20, 0x70, 0x61, 0x67, 0x65, 0x2d, 0x73, 0x69, 0x7a, 0x65, 0x20, 0x61, 0x6c, 0x69, 0x67, 0x6e, 0x65, 0x64, 
+  str_56: db 0x20, 0x20, 0x4e, 0x6f, 0x74, 0x65, 0x3a, 0x20, 0x4d, 0x61, 0x78, 0x65, 0x64, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x6e, 0x20, 0x68, 0x65, 0x61, 0x70, 0x20, 0x6d, 0x65, 0x6d, 0x6f, 0x72, 0x79, 
+  str_63: db 0x74, 0x72, 0x75, 0x65, 
+  str_58: db 0x66, 0x61, 0x6c, 0x73, 0x65, 
+  str_69: db 0x74, 0x72, 0x75, 0x65, 
+  str_3: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x47, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
+  str_26: db 0x60, 0x20, 0x69, 0x73, 0x20, 0x6e, 0x6f, 0x74, 0x20, 0x6e, 0x75, 0x6d, 0x65, 0x72, 0x69, 0x63, 
+  chunks_p: dq 100000, data_0
+  str_2: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x47, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
+  str_28: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x74, 0x61, 0x6b, 0x65, 0x20, 0x73, 0x75, 0x62, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x20, 0x77, 0x68, 0x65, 0x72, 0x65, 0x20, 0x65, 0x6e, 0x64, 0x20, 0x28, 
+  str_38: db 0x74, 0x72, 0x75, 0x65, 
+  str_57: db 0x74, 0x72, 0x75, 0x65, 
+  str_24: db 0x60, 
+  str_10: db 0x5b, 
+  str_15: db 0x53, 0x79, 0x73, 0x63, 0x61, 0x6c, 0x6c, 0x20, 0x60, 0x66, 0x73, 0x74, 0x61, 0x74, 0x60, 0x20, 0x66, 0x61, 0x69, 0x6c, 0x65, 0x64, 0x20, 
+  str_64: db 0x66, 0x61, 0x6c, 0x73, 0x65, 
+  str_46: db 0x61, 0x6f, 0x63, 0x32, 0x30, 0x32, 0x32, 0x2f, 0x64, 0x61, 0x79, 0x33, 0x2f, 0x69, 0x6e, 0x70, 0x75, 0x74, 0x2e, 0x74, 0x78, 0x74, 
+  str_23: db 0x45, 0x78, 0x70, 0x65, 0x63, 0x74, 0x65, 0x64, 0x20, 0x61, 0x20, 0x66, 0x75, 0x6c, 0x6c, 0x79, 0x20, 0x6e, 0x75, 0x6d, 0x65, 0x72, 0x69, 0x63, 0x20, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2e, 0x20, 0x46, 0x6f, 0x75, 0x6e, 0x64, 0x3a, 0x20, 0x60, 
+  str_29: db 0x29, 0x20, 0x69, 0x73, 0x20, 0x67, 0x72, 0x65, 0x61, 0x74, 0x65, 0x72, 0x20, 0x74, 0x68, 0x61, 0x6e, 0x20, 0x73, 0x74, 0x61, 0x72, 0x74, 0x28, 
+  str_19: db 0x55, 0x6e, 0x77, 0x72, 0x61, 0x70, 0x70, 0x65, 0x64, 0x20, 0x61, 0x20, 0x4e, 0x6f, 0x6e, 0x65, 0x20, 0x76, 0x61, 0x72, 0x69, 0x61, 0x6e, 0x74, 
+  str_65: db 0x74, 0x72, 0x75, 0x65, 
+  str_21: db 0x55, 0x6e, 0x77, 0x72, 0x61, 0x70, 0x70, 0x65, 0x64, 0x20, 0x61, 0x20, 0x4e, 0x6f, 0x6e, 0x65, 0x20, 0x76, 0x61, 0x72, 0x69, 0x61, 0x6e, 0x74, 
+  str_1: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x47, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
+  str_40: db 0x74, 0x72, 0x75, 0x65, 
+  str_20: db 0x55, 0x6e, 0x77, 0x72, 0x61, 0x70, 0x70, 0x65, 0x64, 0x20, 0x61, 0x20, 0x4e, 0x6f, 0x6e, 0x65, 0x20, 0x76, 0x61, 0x72, 0x69, 0x61, 0x6e, 0x74, 
+  str_49: db 0x45, 0x78, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x20, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x3a, 0x20, 
+  str_70: db 0x66, 0x61, 0x6c, 0x73, 0x65, 
+  str_27: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x73, 0x70, 0x6c, 0x69, 0x74, 0x2c, 0x20, 0x69, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x74, 0x6f, 0x6f, 0x20, 0x68, 0x69, 0x67, 0x68, 0x21, 
+  str_60: db 0xa, 
+  str_51: db 0x50, 0x61, 0x72, 0x74, 0x20, 0x32, 0x20, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x3a, 0x20, 
+  str_6: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x53, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
+  str_47: db 0x50, 0x61, 0x72, 0x74, 0x20, 0x31, 0x20, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x3a, 0x20, 
+  str_52: db 0x53, 0x69, 0x7a, 0x65, 0x20, 0x60, 
+  str_45: db 0x45, 0x78, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x20, 0x61, 0x6e, 0x73, 0x77, 0x65, 0x72, 0x3a, 0x20, 
+  str_22: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x69, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x69, 0x6e, 0x74, 0x6f, 0x20, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x2e, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 
+  str_67: db 0x4d, 0x75, 0x73, 0x74, 0x20, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x20, 0x61, 0x74, 0x20, 0x6c, 0x65, 0x61, 0x73, 0x74, 0x20, 0x32, 0x30, 0x20, 0x63, 0x68, 0x61, 0x72, 0x73, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x75, 0x66, 0x66, 0x65, 0x72, 0x20, 0x74, 0x6f, 0x20, 0x63, 0x6f, 0x70, 0x79, 0x20, 0x75, 0x36, 0x34, 
+  str_68: db 0x30, 
+  str_13: db 0x20, 0x7c, 0x20, 
+  str_12: db 0x20, 
+  str_59: db 0xa, 
+  str_33: db 0x45, 0x6e, 0x64, 0x3a, 0x20, 0x20, 0x20, 
+  str_61: db 0xa, 
+  str_7: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x53, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
+  str_14: db 0x5d, 0x20, 
+  str_8: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x53, 0x65, 0x74, 0x3a, 0x20, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x73, 0x3a, 0x20, 
+  str_39: db 0x66, 0x61, 0x6c, 0x73, 0x65, 
+  str_62: db 0xa, 
+  str_55: db 0x47, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x20, 0x61, 0x6c, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x6f, 0x72, 0x20, 0x72, 0x61, 0x6e, 0x20, 0x6f, 0x75, 0x74, 0x20, 0x6f, 0x66, 0x20, 0x72, 0x6f, 0x6f, 0x6d, 0x20, 0x66, 0x6f, 0x72, 0x20, 0x6e, 0x65, 0x77, 0x20, 0x63, 0x68, 0x75, 0x6e, 0x6b, 0x73, 
+  str_34: db 0x41, 0x73, 0x73, 0x65, 0x72, 0x74, 0x69, 0x6f, 0x6e, 0x20, 0x66, 0x61, 0x69, 0x6c, 0x65, 0x64, 
+  str_31: db 0x43, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x20, 0x74, 0x61, 0x6b, 0x65, 0x20, 0x73, 0x75, 0x62, 0x73, 0x6c, 0x69, 0x63, 0x65, 0x20, 0x6f, 0x66, 0x20, 0x56, 0x65, 0x63, 0x20, 0x77, 0x68, 0x65, 0x72, 0x65, 0x20, 0x73, 0x74, 0x61, 0x72, 0x74, 0x20, 0x3c, 0x20, 0x65, 0x6e, 0x64, 
+  str_48: db 0x61, 0x6f, 0x63, 0x32, 0x30, 0x32, 0x32, 0x2f, 0x64, 0x61, 0x79, 0x33, 0x2f, 0x65, 0x78, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x2e, 0x74, 0x78, 0x74, 
+  str_11: db 0x20, 0x7c, 0x20, 
 segment .bss
   frame_start_ptr: resq 1
   frame_end_ptr: resq 1

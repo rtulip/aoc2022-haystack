@@ -1,0 +1,104 @@
+include "aoc2022/aoc_utils.hay"
+
+struct Range {
+    pub u64: start
+    pub u64: end
+impl:
+    fn Range.contains(Range: other Range: self) -> [bool] {
+        self::start other::start <=
+        self::end   other::end   >= land
+    }
+
+    fn Range.strictly_less_than(Range: other Range:self) -> [bool] {
+        self::end other::start <
+    }
+}
+
+impl Print<Range> {
+    fn print(Range: r) { 
+        r::start print "..=" print r::end print
+    }
+}
+
+fn Ranges.from_line(Str: mut s) -> [Range Range] {
+    0 while as [i] { i 
+        i s::size <
+        i &s Str.at '-' != land
+    } { 1 + } 
+    s Str.split swap Str.parse_u64 as [start_a] *s !
+    1 s Str.split swap drop *s !
+    
+
+    0 while as [i] { i 
+        i s::size <
+        i &s Str.at ',' != land
+    } { 1 + } 
+    s Str.split swap Str.parse_u64 as [end_a] *s !
+    1 s Str.split swap drop *s !
+
+    0 while as [i] { i 
+        i s::size <
+        i &s Str.at '-' != land
+    } { 1 + } 
+    s Str.split swap Str.parse_u64 as [start_b] *s !
+    1 s Str.split swap drop *s !
+
+    s Str.parse_u64 as [end_b]
+    
+    start_a end_a cast(Range)
+    start_b end_b cast(Range)
+
+}
+
+fn part1(Str) -> [u64] { 
+    File.read_to_string as [file_str]
+    &file_str split_lines as [mut lines]
+
+
+    0 while &lines Vec.is_empty lnot {
+        *lines Vec.pop Opt.unwrap as [line]
+        &line String.as_str Ranges.from_line as [r1 r2]
+
+        r1 r2 Range.contains
+        r2 r1 Range.contains lor if {
+            1 +
+        }
+
+    }
+
+}
+
+fn part2(Str) -> [u64] { 
+    File.read_to_string as [file_str]
+    &file_str split_lines as [mut lines]
+
+
+    0 while &lines Vec.is_empty lnot {
+        *lines Vec.pop Opt.unwrap as [line]
+        &line String.as_str Ranges.from_line as [r1 r2]
+
+        r1 r2 Range.strictly_less_than
+        r2 r1 Range.strictly_less_than lor lnot if {
+            1 +
+        }
+    }
+
+}
+
+fn main() {
+    "aoc2022/day4/example.txt" part1 as [example]     
+    "Example answer: " print example println
+    example 2 == assert
+
+    "aoc2022/day4/input.txt" part1 as [answer]     
+    "Part 1 answer: " print answer println
+    answer 657 == assert
+
+    "aoc2022/day4/example.txt" part2 as [example]     
+    "Example answer: " print example println
+    example 4 == assert
+
+    "aoc2022/day4/input.txt" part2 as [answer]     
+    "Part 2 answer: " print answer println
+    answer 938 == assert
+}

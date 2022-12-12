@@ -136,16 +136,13 @@ fn part2(Str) -> [String] {
 fn main() {
     "aoc2022/day5/example.txt" part1 as [example]     
     "Example answer: " print example println
-    &example String.as_str "CMZ" Str.equals assert
-
+    
     "aoc2022/day5/input.txt" part1 as [answer]     
     "Part 1 answer: " print answer println
-    //answer 657 == assert
-
+    
     "aoc2022/day5/example.txt" part2 as [example]     
     "Example answer: " print example println
 
     "aoc2022/day5/input.txt" part2 as [answer]     
     "Part 2 answer: " print answer println
-    //answer 938 == assert
 }

@@ -1,0 +1,238 @@
+include "aoc2022/aoc_utils.hay"
+
+struct AoCFile {
+    pub u64: size
+    pub Str: name
+
+impl:
+    fn AoCFile.new(u64 Str) -> [AoCFile] {
+        cast(AoCFile)
+    }
+}
+
+impl Print<AoCFile> {
+    fn print(AoCFile: f) {
+        "("       print 
+        f::name   print 
+        ", size=" print
+        f::size   print
+        ")"       print
+    }
+}
+
+struct Dir:
+struct Dir {
+    pub Str         : name
+    pub Vec<Dir>    : subdirs
+    pub Vec<AoCFile>: files
+    pub u64         : size
+impl:
+    fn Dir.new(Str) -> [Dir] {
+        Vec.new::<Dir>
+        Vec.new::<AoCFile>
+        0
+        cast(Dir)
+    }
+
+    fn Dir.subdir(*Dir: self Str: name) -> [*Dir] {
+        0 while dup self::subdirs Vec.len < {
+            as [i]
+
+            i self::subdirs Vec.get_mut Opt.unwrap as [subdir]
+            subdir::name @ name Str.equals if {
+                subdir return
+            }
+
+            i 1 +
+        } drop
+
+        "Didn't find subdir " print name println
+        1 exit
+        self
+    }
+
+    fn Dir.calc_size(*Dir: self) -> [u64] {
+
+        0 while dup self::files Vec.len < {
+            as [i]
+            i self::files Vec.get Opt.unwrap as [f]
+            f::size @ self::size @ + self::size !
+            i 1 +
+        } drop 
+
+        0 while dup self::subdirs Vec.len < {
+            as [i]
+            i self::subdirs Vec.get_mut Opt.unwrap as [d]
+            d Dir.calc_size self::size @ + self::size !
+            i 1 +
+        } drop
+
+        self::size @ 
+
+    }
+
+    fn Dir.print(&Dir: dir u64: level) {
+
+        0 while dup level < {
+            "  " print
+            1 +
+        } drop
+        " - " print dir::name print " (dir) -- " print dir::size println
+        
+        0 while dup dir::files Vec.len < {
+            as [i]    
+            0 while dup level 1 + < {
+                "  " print
+                1 +
+            } drop
+            " - " print
+            i dir::files Vec.get Opt.unwrap println
+
+            i 1 +
+        } drop 
+        
+        0 while dup dir::subdirs Vec.len < {
+            as [i]    
+            i dir::subdirs Vec.get Opt.unwrap level 1 + Dir.print
+            i 1 +
+        } drop 
+    } 
+}
+
+fn walk_path(*Dir: root *Vec<Str>: path) -> [*Dir] {
+    root 0 while dup path Vec.len < {
+        as [i]
+        i path Vec.at Opt.unwrap Dir.subdir
+        i 1 +
+    } drop
+}
+
+fn cd_down(*Vec<Str>: path Str: dir) {
+    dir path Vec.push
+}
+
+fn cd_up(*Vec<Str>: path) { path Vec.pop drop }
+
+fn ls(*Dir: cd &Vec<String>: lines u64: start) -> [u64] {
+    start while dup lines Vec.len < {
+        as [i]
+        i lines Vec.at Opt.unwrap as [line_string]
+        &line_string String.as_str as [line]
+        "$" line Str.starts_with if {
+            i return
+        } 
+
+        "dir " line Str.starts_with if {
+            4 line Str.split swap drop Dir.new cd::subdirs Vec.push
+        } else {
+            line Str.parse_next_num 
+            1 swap Str.split swap drop 
+            AoCFile.new cd::files Vec.push
+        }
+
+        i 1 +
+    }
+}
+
+fn commands(Vec<String>: lines) -> [Dir] {
+
+    "/" Dir.new as [mut root]
+    Vec.new::<Str> as [mut path]
+    1 while dup &lines Vec.len < {
+
+        as [i]
+
+        i &lines Vec.at Opt.unwrap as [line_string]
+        &line_string String.as_str as [line]
+
+        "$ ls" line Str.starts_with if {
+            *root *path walk_path &lines i 1 + ls
+        } else "$ cd .." line Str.starts_with if {
+            *path cd_up
+            i 1 + 
+        } else "$ cd " line Str.starts_with if {
+            *path 5 line Str.split swap drop cd_down
+            i 1 + 
+        } else {
+            "unknown command: `" print line print "`" println
+            1 exit
+            i 1 +
+        }
+
+
+    } drop 
+
+    root
+
+}
+
+fn walk(u64: value u64: threshold &Dir: dir) -> [u64] {
+
+    value
+    dir::size @ threshold <= if {
+        dir::size @ +
+    }
+
+    0 while dup dir::subdirs Vec.len < {
+        as [i]
+        i dir::subdirs Vec.get Opt.unwrap as [subdir]
+        threshold subdir walk
+        i 1 +
+    } drop 
+
+}
+
+fn walk2(u64: threshold *Vec<u64>: values  &Dir: dir) {
+
+    dir::size @ threshold >= if {
+        dir::size @ values Vec.push
+
+        0 while dup dir::subdirs Vec.len < {
+            as [i]
+            i dir::subdirs Vec.get Opt.unwrap as [subdir]
+            threshold values subdir walk2
+            i 1 +
+        } drop 
+    }
+
+    // Don't walk subdirs if parent isn't big enough
+}
+
+fn part1(Str) -> [u64] { 
+    File.read_to_string as [file_str]
+    &file_str split_lines
+    commands as [mut root]
+    *root Dir.calc_size drop
+    0 100000 &root walk
+}
+
+fn part2(Str) -> [u64] { 
+    File.read_to_string as [file_str]
+    &file_str split_lines
+    commands as [mut root]
+    *root Dir.calc_size drop
+    Vec.new::<u64> as [mut values] {
+        30000000 70000000 root::size - -
+        *values &root walk2
+        values Vec.bubble_sort
+    } as [values]
+
+    0 &values Vec.at Opt.unwrap
+        
+}
+
+fn main() {
+    "aoc2022/day7/example.txt" part1 as [example]     
+    "Example answer: " print example println
+    example 95437 == assert
+    
+    "aoc2022/day7/input.txt" part1 as [answer]     
+    "Part 1 answer: " print answer println
+    
+    "aoc2022/day7/example.txt" part2 as [example]     
+    "Example answer: " print example println
+    example 24933642 == assert
+
+    "aoc2022/day7/input.txt" part2 as [answer]     
+    "Part 2 answer: " print answer println
+}

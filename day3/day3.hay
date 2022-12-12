@@ -1,0 +1,94 @@
+include "aoc2022/aoc_utils.hay"
+
+fn char.priority(char: c) -> [u64] {
+
+    c cast(u8) 'Z' cast(u8) <= if {
+        c cast(u8) 'A' cast(u8) - 27 + cast(u64)
+    } else {
+        c cast(u8) 'a' cast(u8) - 1 + cast(u64)
+    }
+
+}
+
+fn char.from_priority(u64: priority) -> [char] {
+
+    priority 26 <= if {
+        'a' cast(u64) priority + 1 - cast(char)
+    } else {
+        'A' cast(u64) priority + 27 - cast(char)
+    }
+
+}
+
+fn line.priority(Str: s) -> [u64] {
+
+    var bool[53]: lookup_left_p
+    var bool[53]: lookup_right_p
+
+    lookup_left_p @ lookup_right_p @ as [lookup_left lookup_right]
+
+    false lookup_left  memset
+    false lookup_right memset
+
+    s::size 2 / s Str.split as [left right]
+    left::size right::size == assert 
+    0 while dup left::size < { 
+        as [i]
+
+        i &left  Str.at 
+        i &right Str.at as [lc rc]
+        lc char.priority rc char.priority as [lp rp]
+        
+        true lp lookup_left Arr.set
+        true rp lookup_right Arr.set
+
+        i 1 + 
+    } drop 
+
+    1 while dup 53 < {
+        as [i]
+
+        i lookup_left  Arr.at
+        i lookup_right Arr.at land if {
+            i return 
+        }
+
+        i 1 +
+    } drop
+
+    "unreachable" println
+    1 exit
+    0
+}
+
+fn part1(Str) -> [u64] { 
+    File.read_to_string as [file_str]
+    &file_str split_lines as [mut lines]
+
+    0 while &lines Vec.is_empty lnot {
+        *lines Vec.pop Opt.unwrap as [s]
+        &s String.as_str line.priority +
+    }
+}
+
+
+fn part2(Str) -> [u64] { drop 1 }
+
+fn main() {
+
+    "aoc2022/day3/example.txt" part1 as [example]     
+    "Example answer: " print example println
+    example 157 == assert
+    
+    "aoc2022/day3/input.txt" part1 as [answer]     
+    "Part 1 answer: " print answer println
+
+    //"aoc2022/day3/example.txt" part2 as [example]     
+    //"Example answer: " print example println
+    //example 12 == assert
+    //
+    //"aoc2022/day3/input.txt" part2 as [answer]     
+    //"Part 2 answer: " print answer println
+    //example 13726 == assert
+
+}

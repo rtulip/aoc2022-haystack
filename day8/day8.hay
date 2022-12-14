@@ -1,0 +1,147 @@
+include "aoc2022/aoc_utils.hay"
+include "std/linear_map.hay"
+
+enum Dir { Up Down Left Right }
+fn Dir.from_char(char: c) -> [Dir] {
+    c 'U' == if {
+        Dir::Up
+    } else c 'D' == if {
+        Dir::Down
+    } else c 'L' == if {
+        Dir::Left
+    } else {
+        Dir::Right 
+    }
+}
+
+struct Point {
+    pub u64: x
+    pub u64: y
+impl:
+    fn Point.distance(Point: other Point: self) -> [u64] {
+        self::x other::x -
+        self::y other::y - 
+        + dup *
+    }
+}
+
+impl Print<Point> {
+    fn print(Point: p) {
+        "Point(" print
+        p::x     print
+        ", "     print
+        p::y     print
+        ")"      print
+    }
+}
+
+impl Add<Point Dir> {
+    Point: Output
+    fn add(Point: p Dir: d) -> [Point] {
+        d Dir::Up == if {
+            
+            p::y 0 == if {
+                "unsighed int underflow while moving up" println
+                1 exit
+            }
+            
+            p::x p::y 1 - cast(Point)
+        } else d Dir::Down == if {
+            p::x p::y 1 + cast(Point)
+        } else d Dir::Left == if {
+            p::x 0 == if {
+                "unsighed int underflow while moving left" println
+                1 exit
+            }
+            p::x 1 - p::y cast(Point)
+        } else d Dir::Right == if {
+            p::x 1 + p::y cast(Point)
+        } else {
+            "Unreachable state in Add<Point Dir>" println
+            1 exit
+            p
+        }
+    }
+}
+
+impl Add<Point Point> {
+    Point: Output
+    fn add(Point: left Point: right) -> [Point] {
+        left::x right::x +
+        left::y right::y +
+        cast(Point)
+    }
+}
+
+fn parse_move(String: s) -> [Move] {
+
+    &s String.as_str [str]
+    0 &str Str.at Dir.from_char
+    2 str::size 2 - str Str.substr Str.parse_u64
+    cast(Move)
+    &s String.delete
+}
+
+fn parse_moves(Vec<String>: mut lines) -> [Vec<Move>] {
+
+    Vec.new::<Move> as [mut moves]
+
+    while &lines Vec.is_empty lnot {
+        *lines Vec.pop Opt.unwrap parse_move *moves Vec.push
+    }
+    moves
+}
+
+
+
+fn walk_in_dir(Point: p Dir: direction u8: height &Vec<Vec<u8>>: grid) -> [bool u64] {
+    0 p direction +
+    while dup grid Point.in_bounds {
+        as [pnt]
+        1 + 
+        pnt grid get_height height < lnot if {
+            false swap return
+        }
+        pnt direction +
+    } drop
+
+    true swap 
+
+}
+
+fn is_visible(Point: p &Vec<Vec<u8>>: grid) -> [bool] {
+    p grid get_height as [height]
+    p Dir::Up    height grid walk_in_dir drop
+    p Dir::Down  height grid walk_in_dir drop lor 
+    p Dir::Left  height grid walk_in_dir drop lor
+    p Dir::Right height grid walk_in_dir drop lor
+}
+
+fn calc_score(Point: p &Vec<Vec<u8>>: grid) -> [u64] {
+    p grid get_height as [height]
+    p Dir::Up    height grid walk_in_dir swap drop
+    p Dir::Down  height grid walk_in_dir swap drop * 
+    p Dir::Left  height grid walk_in_dir swap drop *
+    p Dir::Right height grid walk_in_dir swap drop *
+}
+
+
+fn part1(Str) -> [u64] { 
+    File.read_to_string as [file_str]
+    &file_str split_lines drop 0
+}
+
+fn main() {
+    "aoc2022/day9/example.txt" part1 as [example]     
+    "Example answer: " print example println
+    example 21 == assert
+    
+    "aoc2022/day9/input.txt" part1 as [answer]     
+    "Part 1 answer: " print answer println
+    
+    //"aoc2022/day9/example.txt" part2 as [example]     
+    //"Example answer: " print example println
+
+    //"aoc2022/day9/input.txt" part2 as [answer]     
+    //"Part 2 answer: " print answer println
+}
